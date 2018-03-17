@@ -1,0 +1,19 @@
+{
+  "name": "ing-atms",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.0",
+    "eslint-plugin-html": "^2.0.0",
+    "gh-pages": "^1.0.0"
+  },
+  "scripts": {
+    "start": "polymer serve -o",
+    "build": "polymer build",
+    "deploy": "npm run build && gh-pages -d build/es5-bundled",
+    "lint": "npm run lint:javascript && polymer lint",
+    "lint:javascript": "eslint . --ext js,html --ignore-path .gitignore",
+    "test": "polymer test",
+    "test:integration": "polymer build # test that psk builds without error with the CLI"
+  }
+}

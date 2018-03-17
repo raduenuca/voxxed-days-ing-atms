@@ -1,0 +1,19 @@
+{
+  "name": "ing-atms",
+  "description": "Discover ING ATMs",
+  "main": "index.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout#^2.0.3",
+    "google-map": "GoogleWebComponents/google-map#^2.0.4",
+    "geo-location": "ebidel/geo-location#^2.0.2",
+    "iron-ajax": "PolymerElements/iron-ajax#^2.1.3",
+    "paper-tabs": "PolymerElements/paper-tabs#^2.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^2.1.1",
+    "iron-icon": "PolymerElements/iron-icon#^2.1.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "entrypoint": "index.html",
+  "shell": "src/ing-atms.html",
+  "sources": [
+    "src/**/*",
+    "data/**/*",
+    "images/**/*"
+  ],
+  "extraDependencies": [
+    "manifest.json",
+    "bower_components/webcomponentsjs/*.js"
+  ],
+  "lint": {
+    "rules": [
+      "polymer-2"
+    ]
+  },
+  "builds": [
+    {
+      "preset": "es5-bundled",
+      "basePath": "/voxxed-days-ing-atms/"
+    }
+  ]
+}

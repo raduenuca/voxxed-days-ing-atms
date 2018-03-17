@@ -1,0 +1,28 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="ing-atms">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    class IngAtms extends Polymer.Element {
+      static get is() { return 'ing-atms'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'ing-atms'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(IngAtms.is, IngAtms);
+  </script>
+</dom-module>
