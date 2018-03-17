@@ -1,6 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../bower_components/geo-location/geo-location.html">
 
 <dom-module id="ing-atms">
     <template>
@@ -9,9 +11,22 @@
                 @apply --layout-fit;
             }
         </style>
+
+        <geo-location
+                high-accuracy watch-pos
+                latitude="{{lat}}" longitude="{{lng}}">
+        </geo-location>
+
         <google-map
                 api-key="AIzaSyC2OHRQF8Ci9uTLuCLgoFRlxS6722yxcvA"
-                disable-default-ui zoom="15"></google-map>
+                disable-default-ui zoom="15"
+                latitude="[[lat]]" longitude="[[lng]]">
+            <google-map-marker
+                    latitude="[[lat]]" longitude="[[lng]]"
+                    icon="images/my-location.png">
+                <p>You are here</p>
+            </google-map-marker>
+        </google-map>
     </template>
 
     <script>
