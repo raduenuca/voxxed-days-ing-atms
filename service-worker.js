@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["bower_components/webcomponentsjs/webcomponents-loader.js","f13bbbbf647b7922575a7894367ddaaf"],["images/favicon.ico","f99a2ed5bdadf40a64e9fcade98e5bad"],["images/my-location.png","4bafefef23f3525be9a0e46fdbbb41b7"],["images/pin.png","ac447b99cc855d733c791c4242a56112"],["index.html","c675af92dbda6cd17faba954c34703b7"],["manifest.json","9954a706ffc9ae73d212aa689762b528"],["src/ing-atms.html","691f896f2f81b738c00b3d817c7c2353"]];
+var precacheConfig = [["bower_components/webcomponentsjs/webcomponents-loader.js","f13bbbbf647b7922575a7894367ddaaf"],["images/favicon.ico","f99a2ed5bdadf40a64e9fcade98e5bad"],["images/my-location.png","4bafefef23f3525be9a0e46fdbbb41b7"],["images/pin.png","ac447b99cc855d733c791c4242a56112"],["index.html","470b63acce1241c4984f1f7c9d28cdc7"],["manifest.json","9954a706ffc9ae73d212aa689762b528"],["src/ing-atms.html","691f896f2f81b738c00b3d817c7c2353"]];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 
 
