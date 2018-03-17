@@ -1,8 +1,10 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/google-map/google-map.html">
 <link rel="import" href="../bower_components/google-map/google-map-marker.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="ing-atms">
     <template>
@@ -11,6 +13,8 @@
                 @apply --layout-fit;
             }
         </style>
+
+        <iron-ajax auto url="../data/locations.json" on-response="parseLocations"></iron-ajax>
 
         <geo-location
                 high-accuracy watch-pos
@@ -26,6 +30,18 @@
                     icon="images/my-location.png">
                 <p>You are here</p>
             </google-map-marker>
+            <dom-repeat items="[[locations]]" as="atm" filter="isIngAtm">
+                <template>
+                    <google-map-marker
+                            slot="markers"
+                            icon="images/pin.png"
+                            latitude="[[atm.map.latitude]]"
+                            longitude="[[atm.map.longitude]]">
+                        <h2>[[atm.name]]</h2>
+                        <p>[[atm.schedule]]</p>
+                    </google-map-marker>
+                </template>
+            </dom-repeat>
         </google-map>
     </template>
 
@@ -42,6 +58,23 @@
                         value: 'ing-atms'
                     }
                 };
+            }
+
+            ready(){
+                super.ready();
+                window.addEventListener('geo-error', () => {
+                    this.lat = 44.446386;
+                    this.lng = 26.098225;
+                })
+            }
+
+            parseLocations(event, xhr) {
+                this.locations = xhr.response.city
+                    .reduce((locations, city) => locations.concat(city.location), []);
+            }
+
+            isIngAtm(atm){
+                return atm && atm.type !== "ATM non-ING";
             }
         }
 
