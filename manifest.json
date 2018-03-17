@@ -1,6 +1,6 @@
 {
-  "name": "Voxxed Days - Discover ING ATMs",
-  "short_name": "Voxxed Days - Discover ING ATMs",
+  "name": "Discover ING ATMs",
+  "short_name": "ING ATMs",
   "description": "Voxxed Days - Discover ING ATMs",
   "icons": [
     {
@@ -14,8 +14,8 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/",
-  "display": "standalone",
+  "start_url": "/voxxed-days-ing-atms/",
+  "display": "fullscreen",
   "theme_color": "#3f51b5",
   "background_color": "#3f51b5"
 }
