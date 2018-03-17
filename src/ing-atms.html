@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/google-map/google-map-directions.html">
 <link rel="import" href="../bower_components/google-map/google-map-marker.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
@@ -21,8 +22,15 @@
                 latitude="{{lat}}" longitude="{{lng}}">
         </geo-location>
 
+        <google-map-directions
+                map="[[map]]" api-key="[[apiKey]]"
+                start-address="[[startAddress]]" end-address="[[endAddress]]"
+                renderer-options="[[rendererOptions]]"
+                travel-mode="[[travelMode]]">
+        </google-map-directions>
+
         <google-map
-                api-key="AIzaSyC2OHRQF8Ci9uTLuCLgoFRlxS6722yxcvA"
+                map="{{map}}" api-key="[[apiKey]]"
                 disable-default-ui zoom="15"
                 latitude="[[lat]]" longitude="[[lng]]">
             <google-map-marker
@@ -36,7 +44,8 @@
                             slot="markers"
                             icon="images/pin.png"
                             latitude="[[atm.map.latitude]]"
-                            longitude="[[atm.map.longitude]]">
+                            longitude="[[atm.map.longitude]]"
+                            click-events on-google-map-marker-click="showDirection">
                         <h2>[[atm.name]]</h2>
                         <p>[[atm.schedule]]</p>
                     </google-map-marker>
@@ -53,14 +62,26 @@
 
             static get properties() {
                 return {
-                    prop1: {
+                    apiKey: String,
+                    rendererOptions: {
+                        type: Object,
+                        value: {
+                            suppressMarkers: true,
+                            preserveViewPort: false
+                        }
+                    },
+                    startAddress: {
+                        type: Object,
+                        computed: 'computeStartAddress(lat, lng)'
+                    },
+                    travelMode: {
                         type: String,
-                        value: 'ing-atms'
+                        value: 'WALKING'
                     }
                 };
             }
 
-            ready(){
+            ready() {
                 super.ready();
                 window.addEventListener('geo-error', () => {
                     this.lat = 44.446386;
@@ -73,8 +94,19 @@
                     .reduce((locations, city) => locations.concat(city.location), []);
             }
 
-            isIngAtm(atm){
+            isIngAtm(atm) {
                 return atm && atm.type !== "ATM non-ING";
+            }
+
+            computeStartAddress(lat, lng) {
+                return {lat: lat, lng: lng};
+            }
+
+            showDirection(event){
+                this.endAddress = {
+                    lat: parseFloat(event.target.latitude),
+                    lng: parseFloat(event.target.longitude)
+                };
             }
         }
 
