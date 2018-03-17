@@ -6,12 +6,34 @@
 <link rel="import" href="../bower_components/google-map/google-map-marker.html">
 <link rel="import" href="../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 
 <dom-module id="ing-atms">
     <template>
         <style>
             :host {
                 @apply --layout-fit;
+            }
+
+            paper-tabs {
+                @apply --layout-fixed-left;
+                --paper-tabs-selection-bar-color: #4271F4;
+                background: #ffffff;
+            }
+
+            paper-tab {
+                --paper-tab-ink: #BBDEFB;
+            }
+
+            paper-tab.iron-selected {
+                background: rgb(66, 113, 244);
+                color: #ffffff;
+            }
+
+            paper-tab iron-icon {
+                margin-right: 10px;
             }
         </style>
 
@@ -52,6 +74,25 @@
                 </template>
             </dom-repeat>
         </google-map>
+
+        <paper-tabs attr-for-selected="data-mode" selected="{{travelMode}}">
+            <paper-tab data-mode="DRIVING">
+                <iron-icon icon="maps:directions-car"></iron-icon>
+                <span>DRIVING</span>
+            </paper-tab>
+            <paper-tab data-mode="WALKING">
+                <iron-icon icon="maps:directions-walk"></iron-icon>
+                <span>WALKING</span>
+            </paper-tab>
+            <paper-tab data-mode="BICYCLING">
+                <iron-icon icon="maps:directions-bike"></iron-icon>
+                <span>BICYCLING</span>
+            </paper-tab>
+            <paper-tab data-mode="TRANSIT">
+                <iron-icon icon="maps:directions-transit"></iron-icon>
+                <span>TRANSIT</span>
+            </paper-tab>
+        </paper-tabs>
     </template>
 
     <script>
